@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="images/BARRA/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script>
+        
+        function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+
+        }
+    }
+
+
+        function nombreConBlur(){
+            var idel = document.getElementById("inputNombreC").value;
+            if(idel.length < 2){
+                alert("Le falta escribir el  Nombre completo");
+            }
+        }
+
+        function emailOnBlur(){
+
+            var correo = document.getElementById("inputCorreo").value;
+
+
+            var emailCheck=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+            var isValidate = emailCheck.test(correo);
+
+            console.log(isValidate, correo);
+
+            if(!isValidate){
+                alert("Verifique Correo")
+            }
+        }
+
+        function numtarjetaOnBlur(){
+            var tarjeta = document.getElementById("inputTarjeta").value;
+
+            console.log(tarjeta)
+
+            if(tarjeta.length < 16){
+                alert("Verifique Tarjeta")
+            }
+        }
+        function cvvOnBlur(){
+            var cvv = document.getElementById("inputCVV").value;
+
+            if(cvv.length > 3){
+                alert("Verifique CVV")
+            }
+        }
+        function montoOnBlur(){
+            var monto = document.getElementById("inputMontoDonar").value;
+
+            if(monto < 1000)[
+            alert("Solo se puede donar sobre $1.000")
+            ]
+        }
+    </script>
+</head>
+
+<body>
+<!--BARRA ARRIBA DE REDESOCIALES-->
+    <div class="main-top" style="height: 55px;">
+        <div class="container-fluid text-center" style="align-items: center; align-content: center;">
+            <div class="row" style=" align-items: center; align-content: center;">
+                <div class="col-lg-4 col-md-12 col-sm-12" style="margin: auto;">
+                    <div class="footer-top-box text-center" >
+                        <ul>
+                            <li><a href="https://www.facebook.com/punchi.dunchi"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="https://www.instagram.com/floraduoc"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="https://wa.me/56945441036"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- BARRA NAVEGACION -->    
+    <header class="main-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container" style="background-color:white">
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i></button>
+                    <a class="navbar-brand" href="index.html"><img src="images/BARRA/logo.png" class="logo"></a>
+                </div>
+    
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tienda.html">Tienda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="donaciones.html">Donaciones</a></li>
+                        <li class="nav-item"><a class="nav-link" href="usuario.html">Usuario</a></li>
+                    </ul>
+                </div>
+            </div>
+    </header>       
+
+<!-- TITULO-->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>DONACIONES</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--FORMULARIO-->
+<div class="my-account-box-main">
+    <div class="container">
+        <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="input">Nombre Completo</label>
+                <input class="form-control" required="required" placeholder="Nombre Completo" onkeypress="return soloLetras(event)">
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="input">Correo</label>
+                  <input  class="form-control" required="required" id="inputCorreo" placeholder="Correo" onblur="emailOnBlur()">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="input">Num Tarjeta</label>
+                  <input  class="form-control" required="required" maxlength="16" id="inputTarjeta" placeholder="Num Tarjeta" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" onblur="numtarjetaOnBlur()">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="input">CVV</label>
+                    <input  class="form-control" required="required" maxlength="3" id="inputCVV" placeholder="CVV" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" onblur="cvvOnBlur()">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="input">Fecha Caducacion(MM/AA)</label>
+                    <input  class="form-control" required="required" placeholder="Fecha Caducacion" maxlength="5">
+                </div>
+                
+                <div class="form-group">
+                    <label for="inputState">Debito/Credito</label>
+                    <select id="inputState" class="form-control">
+                      <option selected>Debito</option>
+                      <option>Credito</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="input">Monto a donar</label>
+                  <input  class="form-control" id="inputMontoDonar" required="required" maxlength="6" onblur="montoOnBlur()" placeholder="Monto a donar" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                </div>
+            </div>
+    <button type="submit" class="btn btn-primary" >Donar</button>
+    </form>
+    </div>
+</div>
+<!-- ULTIMO CARRUCEL-->
+    <div class="instagram-box">
+        <div class="main-instagram owl-carousel owl-theme">
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/ULTIMO CARRUCEL/1.jpg" width="200" height="200"/>
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/floraduoc"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/ULTIMO CARRUCEL/2.jpg" width="200" height="200"/>
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/floraduoc"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/ULTIMO CARRUCEL/3.jpg" alt="" width="200" height="200"/>
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/floraduoc"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/ULTIMO CARRUCEL/4.jpg" alt="" width="200" height="200"/>
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/floraduoc"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/ULTIMO CARRUCEL/5.jpg" alt="" width="200" height="200"/>
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/floraduoc"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="images/ULTIMO CARRUCEL/6.jpg" width="200" height="200"/>
+                    <div class="hov-in">
+                        <a href="https://www.instagram.com/floraduoc"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--COPYRIGHT-->
+    <div class="footer-copyright">
+        <p class="footer-company">Creado por Grupo 8. &copy; 2022 <a href="#">FLORADUOC</a> Diseñado por : Javier Diaz Y Javier Miranda
+    </div>
+   
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none; color: rgb(0, 0, 0); background-color: rgba(196, 242, 32, 0.445);">&uarr;</a>
+
+<!-- BIBLIOTECA JAVASCRIPT -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+<!-- ARCHIVOS NECESARIOS PARA LA PAGINA -->
+    <script src="js/jquery.superslides.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/inewsticker.js"></script>
+    <script src="js/bootsnav.js."></script>
+    <script src="js/images-loded.min.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/baguetteBox.min.js"></script>
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+
+</html>
